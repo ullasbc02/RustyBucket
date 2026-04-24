@@ -1,3 +1,4 @@
+
 // fn add(a: i32, b: i32) -> i32 {
 //     a + b
 // }
@@ -57,9 +58,10 @@ fn main() {
     // let mut numbers = vec![1, 2, 3, 4, 5];
     // numbers.push(6);
     // println!("The numbers are: {:?}", numbers);
-    // for number in &numbers {
+    // for number in &numbers { // if we use &numbers, we are borrowing the vector, if we use numbers, we are taking ownership of the vector
     //     println!("The number is: {}", number);
     // }
+    // println!("The numbers are: {:?}", numbers);
 
 
     // using a tuple
@@ -67,6 +69,48 @@ fn main() {
     // println!("Name: {}, Age: {}", person.0, person.1);
 
 
+    // ownership
+    // let s1 = String::from("Hello");
+    // let s2 = s1; // s1 is moved to s2, s1
+    // println!("s1: {}", s1); // this will cause an error because s1 is moved
+    // println!("s2: {}", s2); // this will work because s2 has ownership
 
+
+    // borrowing
+    // let mut s1 = String::from("Hello");
+    // let s2 = &s1; // s2 is borrowing s1, s1 still has ownership
+    // println!("s1: {}", s1); // this will work because s1 still has ownership
+    // println!("s2: {}", s2); // this will work because s2 is borrowing s1
+
+    // let s2 = s1.clone(); // s2 is a clone of s1, s1 still has ownership
+    // println!("s1: {}", &s1); // this will work because s1 still has ownership
+    // println!("s2: {}", &s2); // this will work because s2 is a clone of s1
+
+    // let x = 100;
+    // let xref = &x;
+    // println!("{:p}", &x);
+    // println!("{:p}", &xref);
+
+    // let r1 = &s1; // r1 is borrowing s1, s1 still has ownership - Multiple immutable references are allowed
+    // let r2 = &s1;
+    // println!("r1: {}, r2: {}", r1, r2);
+
+    // let r3 = &mut s1;
+    // // println!("s1: {:p}", &s1);
+    // println!("r3: {:p}", &r3);
+    // r1.push_str("not mutable");
+    // println!("r1: {}, r2: {}, r3: {}", r1, r2, r3);
+    // r3.push_str("world"); 
+    // println!("r3: {}", r3);
+
+    // let mut s1 = String::from("Hello");
+    // let mut s2 = String::from("Hi");
+
+    // let mut r1 = &mut s1;
+
+    // println!("r1:{}", r1);
+    // r1 = &mut s2; //  allowed because r1 is mutable
+    // println!("r1:{}", r1);
+    
 }
 
