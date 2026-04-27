@@ -2,6 +2,7 @@
 mod r#struct;
 mod r#practice;
 mod r#options;
+mod r#trait;
 // fn add(a: i32, b: i32) -> i32 {
 //     a + b
 // }
@@ -9,6 +10,7 @@ fn main() {
     r#struct::run_struct_demo();
     r#practice::practice();
     r#options::options_demo();
+    r#trait::demo();
     // declaring of mutable variable and shadowing of variable
     // let x = 5;
     // let x = 3;
