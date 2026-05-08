@@ -49,7 +49,7 @@ async fn main() {
             producer(id, tx_clone).await;
         });
     }
-
+    // main does not wait for producers to finish, it just drops the original sender to signal completion
     drop(tx);
 
     collector(rx).await;
