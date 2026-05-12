@@ -1,0 +1,5 @@
+{"timestamp":"2026-05-12T10:00:00Z","service":"payments","level":"INFO","message":"payment started","latency_ms":120,"trace_id":"trace-1"}
+{"timestamp":"2026-05-12T10:01:00Z","service":"payments","level":"ERROR","message":"payment failed","latency_ms":300,"trace_id":"trace-2"}
+{"timestamp":"2026-05-12T10:02:00Z","service":"auth","level":"INFO","message":"login success","latency_ms":80,"trace_id":"trace-3"}
+{"timestamp":"2026-05-12T10:03:00Z","service":"orders","level":"ERROR","message":"order failed","latency_ms":220,"trace_id":"trace-4"}
+{"timestamp":"2026-05-12T10:04:00Z","service":"payments","level":"INFO","message":"payment completed","latency_ms":150,"trace_id":"trace-5"}
