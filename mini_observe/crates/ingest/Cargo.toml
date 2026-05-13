@@ -1,0 +1,12 @@
+[package]
+name = "miniobserve-ingest"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+miniobserve-common = { path = "../common" }
+miniobserve-wal = { path = "../wal" }
+miniobserve-storage = { path = "../storage" }
+
+tokio.workspace = true
+tracing.workspace = true

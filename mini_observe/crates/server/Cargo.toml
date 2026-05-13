@@ -1,0 +1,16 @@
+[package]
+name = "miniobserve-server"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+miniobserve-common = { path = "../common" }
+miniobserve-ingest = { path = "../ingest" }
+miniobserve-query = { path = "../query" }
+miniobserve-api = { path = "../api" }
+
+tokio.workspace = true
+axum.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+anyhow.workspace = true

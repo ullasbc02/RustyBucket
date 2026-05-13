@@ -1,0 +1,12 @@
+[package]
+name = "miniobserve-wal"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+miniobserve-common = { path = "../common" }
+
+tokio.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+uuid.workspace = true

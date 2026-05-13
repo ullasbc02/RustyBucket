@@ -1,0 +1,13 @@
+[package]
+name = "miniobserve-query"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+miniobserve-common = { path = "../common" }
+
+datafusion.workspace = true
+arrow.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true

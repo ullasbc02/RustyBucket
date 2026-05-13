@@ -1,0 +1,14 @@
+[package]
+name = "miniobserve-api"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+miniobserve-common = { path = "../common" }
+miniobserve-ingest = { path = "../ingest" }
+miniobserve-query = { path = "../query" }
+
+axum.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true
