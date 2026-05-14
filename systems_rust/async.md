@@ -1,13 +1,4 @@
-Totally fair—this topic throws a lot at you at once. Let’s **slow it down** and walk through a **single concrete example**, showing:
 
-* what runs
-* when it pauses
-* how memory looks
-* how Tokio moves things around
-
-No jargon overload—just a clean mental model.
-
----
 
 # 🧪 Example (slightly extended)
 
