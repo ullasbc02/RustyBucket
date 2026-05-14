@@ -150,6 +150,51 @@ impl Wal {
             .filter_map(|line| Uuid::parse_str(line).ok())
             .collect())
     }
+
+    pub async fn cleanup_committed_segments(&self) -> Result<()> {
+        let committed = self.load_committed_ids().await?;
+        let active = self.active_segment.lock().await.clone();
+
+        let mut entries = fs::read_dir(&self.dir).await?;
+
+        while let Some(entry) = entries.next_entry().await? {
+            let path = entry.path();
+
+            if !is_segment_file(&path) {
+                continue;
+            }
+
+            if path == active {
+                continue;
+            }
+
+            let content = fs::read_to_string(&path).await.unwrap_or_default();
+
+            let mut all_committed = true;
+            let mut has_records = false;
+
+            for line in content.lines() {
+                if line.trim().is_empty() {
+                    continue;
+                }
+
+                has_records = true;
+
+                let record: LogRecord = serde_json::from_str(line)?;
+
+                if !committed.contains(&record.id) {
+                    all_committed = false;
+                    break;
+                }
+            }
+
+            if has_records && all_committed {
+                fs::remove_file(&path).await?;
+            }
+        }
+
+        Ok(())
+    }
 }
 
 fn new_segment_name() -> String {
@@ -166,48 +211,4 @@ fn is_segment_file(path: &Path) -> bool {
         .and_then(|name| name.to_str())
         .map(|name| name.starts_with("segment-") && name.ends_with(".wal"))
         .unwrap_or(false)
-}
-pub async fn cleanup_committed_segments(&self) -> Result<()> {
-    let committed = self.load_committed_ids().await?;
-    let active = self.active_segment.lock().await.clone();
-
-    let mut entries = fs::read_dir(&self.dir).await?;
-
-    while let Some(entry) = entries.next_entry().await? {
-        let path = entry.path();
-
-        if !is_segment_file(&path) {
-            continue;
-        }
-
-        if path == active {
-            continue;
-        }
-
-        let content = fs::read_to_string(&path).await.unwrap_or_default();
-
-        let mut all_committed = true;
-        let mut has_records = false;
-
-        for line in content.lines() {
-            if line.trim().is_empty() {
-                continue;
-            }
-
-            has_records = true;
-
-            let record: LogRecord = serde_json::from_str(line)?;
-
-            if !committed.contains(&record.id) {
-                all_committed = false;
-                break;
-            }
-        }
-
-        if has_records && all_committed {
-            fs::remove_file(&path).await?;
-        }
-    }
-
-    Ok(())
 }
