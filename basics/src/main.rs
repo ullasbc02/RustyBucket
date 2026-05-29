@@ -13,8 +13,15 @@ fn main() {
     r#trait::demo();
     // declaring of mutable variable and shadowing of variable
     // let x = 5;
-    // let x = 3;
+    // let x = "ullas"; // Change the datatype not possible for mutable variable but possible for shadowing of variable
     // println!("This is the value of x: {}", x);
+
+    // let x = x + 1; // Shadowing in the same scope: x is now 6
+
+    // {
+    //     let x = x * 2; // Shadowing in an inner block: x is now 12
+    //     println!("The value of x in the inner scope is: {}", x); // Prints 12
+    // }
 
     // declaring of constant variable
     // const PI: f64 = 3.14159;
