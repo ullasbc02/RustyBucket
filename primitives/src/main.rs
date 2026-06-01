@@ -39,6 +39,7 @@ impl fmt::Display for Matrix {
     }
 }
 
+// #[allow(dead_code)]
 fn main() {
     // Variables can be type annotated.
     let logical: bool = true;

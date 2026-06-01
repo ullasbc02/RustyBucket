@@ -104,6 +104,17 @@ fn main() {
     // let xref = &x;
     // println!("{:p}", &x);
     // println!("{:p}", &xref);
+    // println!("x: {}, xref: {}", x, xref);
+    // println!("{:p}", &xref); // Rust has a feature called implicit dereferencing for display formatting.
+
+    // // 1. Where is x located?
+    // println!("Address of x (XA):        {:p}", &x);
+
+    // // 2. What value is stored inside xref? (It should match XA!)
+    // println!("Value inside xref:         {:p}", xref);
+
+    // // 3. Where is xref itself located?
+    // println!("Address of xref (XB):     {:p}", &xref);
 
     // let r1 = &s1; // r1 is borrowing s1, s1 still has ownership - Multiple immutable references are allowed
     // let r2 = &s1;
@@ -112,19 +123,20 @@ fn main() {
     // let r3 = &mut s1;
     // // println!("s1: {:p}", &s1);
     // println!("r3: {:p}", &r3);
-    // r1.push_str("not mutable");
+    // r1.push_str("not mutable"); // this will cause an error because r1 is an immutable reference and we cannot modify the value through an immutable reference
     // println!("r1: {}, r2: {}, r3: {}", r1, r2, r3);
     // r3.push_str("world"); 
     // println!("r3: {}", r3);
 
-    // let mut s1 = String::from("Hello");
-    // let mut s2 = String::from("Hi");
+    let mut s1 = String::from("Hello");
+    let mut s2 = String::from("Hi");
 
-    // let mut r1 = &mut s1;
+    let mut r1 = &mut s1;
 
-    // println!("r1:{}", r1);
-    // r1 = &mut s2; //  allowed because r1 is mutable
-    // println!("r1:{}", r1);
+    println!("r1:{}", r1);
+    println!("s1:{}", s1);
+    r1 = &mut s2; //  allowed because r1 is mutable
+    println!("r1:{}", r1);
     
 }
 

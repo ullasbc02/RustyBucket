@@ -29,7 +29,7 @@ fn main() {
     let mut handles = vec![];
 
     for i in 0..3 {
-        let numbers_clone = Arc::clone(&numbers);
+        let numbers_clone = Arc::clone(&numbers); // clone the Arc to increase the reference count and get a new pointer to the same data
 
         let handle = thread::spawn(move || {
             println!("Thread {}: {:?}", i, numbers_clone);
@@ -92,7 +92,7 @@ fn main() {
 // * `numbers`: `0x111`
 // * `handles`: A list containing three receipts: `[Receipt_0, Receipt_1, Receipt_2]`.
 
-// Meanwhile, there are **three separate Thread Stacks** ($0, 1,$ and $2$), each holding a copy of the address `0x111`. The **Strong Count** at `0x111` is now **4** (Main + 3 Threads).
+// Meanwhile, there are **three separate Thread Stacks** (0, 1 and 2), each holding a copy of the address `0x111`. The **Strong Count** at `0x111` is now **4** (Main + 3 Threads).
 
 // ---
 
