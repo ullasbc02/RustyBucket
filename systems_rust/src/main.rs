@@ -38,7 +38,9 @@ fn main() {
         handles.push(handle);
     }
     // println!("Main thread: {:?}", handles);
+    
     for handle in handles {
+        // main: I will wait for this specific thread to finish.
         handle.join().unwrap();
     }
 
