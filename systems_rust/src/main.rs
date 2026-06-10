@@ -1,3 +1,4 @@
+// If I only need increment operations, AtomicU64 is better because it avoids locking and is highly efficient.
 use std::sync::Arc;
 use std::thread;
 mod r#mutex;
